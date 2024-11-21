@@ -63,6 +63,7 @@ func _toggle() -> void:
 func _change_light_color(new_color: Color) -> void:
 	if _point_light_2d != null:
 		_point_light_2d.color = new_color
+		RenderingServer.global_shader_parameter_set("torch_color", new_color)
 
 
 func _change_light_energy(new_energy: float) -> void:

@@ -1,15 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://b13wrl3bedjku"]
+[gd_scene load_steps=3 format=3 uid="uid://b13wrl3bedjku"]
 
 [ext_resource type="Script" path="res://Scripts/Components/Greyboxing/Torch.gd" id="1_fjyou"]
-
-[sub_resource type="Gradient" id="Gradient_ytk2o"]
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_lcdt0"]
-gradient = SubResource("Gradient_ytk2o")
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.793578, 0.284404)
+[ext_resource type="Texture2D" uid="uid://ybe3sxv84rkv" path="res://ZZ_Scratch/Torch/TorchTexture.tres" id="2_lshnh"]
 
 [node name="Torch" type="Node2D"]
 script = ExtResource("1_fjyou")
@@ -19,7 +11,7 @@ visible = false
 position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(10, 10)
 shadow_item_cull_mask = 0
-texture = SubResource("GradientTexture2D_lcdt0")
+texture = ExtResource("2_lshnh")
 texture_scale = 0.75
 
 [node name="Shadow" type="PointLight2D" parent="."]
@@ -30,7 +22,7 @@ position = Vector2(-2.38419e-07, -2.38419e-07)
 scale = Vector2(10, 10)
 shadow_enabled = true
 shadow_item_cull_mask = 3
-texture = SubResource("GradientTexture2D_lcdt0")
+texture = ExtResource("2_lshnh")
 texture_scale = 0.75
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

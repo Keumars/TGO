@@ -94,3 +94,7 @@ func _unhandled_input(_event: InputEvent) -> void:
 	if _event.is_action_pressed("pause_time"):
 		#just cycles through paused -> unpaused
 		pause(!is_paused())
+
+
+func _process(_delta: float) -> void:
+	RenderingServer.global_shader_parameter_set("day_night_color", current_color())

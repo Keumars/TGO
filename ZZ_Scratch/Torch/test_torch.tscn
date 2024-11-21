@@ -12,6 +12,7 @@ shader = ExtResource("3_unlec")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rce21"]
 shader = ExtResource("5_f8pf8")
 shader_parameter/color = null
+shader_parameter/dy = null
 
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rlgro"]
 polygon = PackedVector2Array(-48, 80, -48, 48, 48, 48, 48, 80)
