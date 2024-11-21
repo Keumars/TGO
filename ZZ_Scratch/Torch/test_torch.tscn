@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://b3rk3iq0xvldj"]
+
+[ext_resource type="Texture2D" uid="uid://bscia2jifnte5" path="res://Art/Lamp/spot_radius1.png" id="2_gqh3b"]
+[ext_resource type="Script" path="res://ZZ_Scratch/Torch/test_torch.gd" id="2_xc3kp"]
+[ext_resource type="Shader" path="res://Shaders/mult.gdshader" id="3_unlec"]
+[ext_resource type="Shader" path="res://Shaders/wall.gdshader" id="5_f8pf8"]
+[ext_resource type="Texture2D" uid="uid://bw8g5hunfu3yq" path="res://Art/Environment/simple_tileset_ext.png" id="6_mwrc7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_py7jv"]
+shader = ExtResource("3_unlec")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rce21"]
+shader = ExtResource("5_f8pf8")
+shader_parameter/color = null
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_rlgro"]
+polygon = PackedVector2Array(-48, 80, -48, 48, 48, 48, 48, 80)
+
+[node name="TestTorch" type="Node2D"]
+script = ExtResource("2_xc3kp")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 27.0
+scale = Vector2(37.2564, 31.0237)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_py7jv")
+offset_right = 40.0
+offset_bottom = 27.0
+scale = Vector2(37.2564, 31.0237)
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0, 0, 0, 1)
+
+[node name="Torch" type="PointLight2D" parent="."]
+position = Vector2(438, 577)
+scale = Vector2(0.742647, 0.742647)
+shadow_enabled = true
+shadow_filter = 1
+texture = ExtResource("2_gqh3b")
+texture_scale = 2.0
+
+[node name="SimpleTilesetExt" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_rce21")
+position = Vector2(461, 437)
+scale = Vector2(1, 0.775)
+texture = ExtResource("6_mwrc7")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="SimpleTilesetExt"]
+occluder = SubResource("OccluderPolygon2D_rlgro")

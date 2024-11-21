@@ -37,6 +37,10 @@ func _on_clock_hour_passed() -> void:
 		tweener.tween_property(_modulate, "color", _get_target(current_time), 2)
 
 
+func current_color() -> Color:
+	return _modulate.color
+
+
 func _get_target(time: int) -> Color:
 	if time == day_start:
 		print("day start")

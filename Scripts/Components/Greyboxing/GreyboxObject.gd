@@ -216,6 +216,7 @@ func _process_can_block_light_update() -> void:
 		_light.occluder_light_mask = 2
 		_light.show_behind_parent = true
 		_light.name = LIGHT_NODE
+		_light.clip_children = CanvasItem.CLIP_CHILDREN_ONLY
 		add_child(_light)
 		_light.owner = self
 
