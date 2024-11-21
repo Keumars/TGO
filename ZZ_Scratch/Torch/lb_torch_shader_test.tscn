@@ -59,7 +59,7 @@ layer_0/tile_data = PackedInt32Array(0, 262144, 3, 65537, 262144, 3, 65538, 2621
 position = Vector2(510, 374)
 
 [node name="Torch" parent="." index="3" instance=ExtResource("4_1s3i7")]
-position = Vector2(575, 394)
+position = Vector2(575, 393)
 light_size = 4.0
 
 [node name="DayNightCycle" parent="." index="4" instance=ExtResource("7_asqcj")]
@@ -96,7 +96,7 @@ script = ExtResource("7_1lbbe")
 position = Vector2(0, -64)
 occluder = SubResource("OccluderPolygon2D_g4ew3")
 
-[node name="SimpleTilesetExt3" type="Sprite2D" parent="NewShader" index="2"]
+[node name="SimpleTilesetExt4" type="Sprite2D" parent="NewShader" index="2"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_5gmrf")
 position = Vector2(529, 609)
@@ -104,7 +104,7 @@ texture = ExtResource("6_8y3r1")
 offset = Vector2(0, -64)
 script = ExtResource("7_1lbbe")
 
-[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/SimpleTilesetExt3" index="0"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/SimpleTilesetExt4" index="0"]
 position = Vector2(0, -64)
 occluder = SubResource("OccluderPolygon2D_g4ew3")
 

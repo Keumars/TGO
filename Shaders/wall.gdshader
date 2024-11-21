@@ -14,7 +14,9 @@ void fragment() {
 		COLOR = texture(TEXTURE, UV) * day_night_color;
 	} else {
 		float u = float(light_distance) / float(cutoff) / float(2);
-		vec4 lighting = texture(LIGHT_TEX, vec2(0.5 + u, .5));
-		COLOR = lighting * texture(TEXTURE, UV);
+		float lighting = texture(LIGHT_TEX, vec2(0.5 + u, .5)).r;
+		vec3 tex = texture(TEXTURE, UV).rgb;
+		vec3 tint_color = tex * day_night_color.rgb;
+		COLOR = vec4(tex * lighting + tint_color * (float(1) - lighting), 1);
 	}
 }
