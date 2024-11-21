@@ -11,33 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://cqin6fb282fjf" path="res://Scenes/Components/DayNightCycle.tscn" id="7_asqcj"]
 [ext_resource type="Texture2D" uid="uid://ybe3sxv84rkv" path="res://ZZ_Scratch/Torch/TorchTexture.tres" id="8_ndcsl"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfugd"]
-resource_local_to_scene = true
-shader = ExtResource("5_ljgus")
-shader_parameter/dy = 1
-shader_parameter/light_distance = null
-shader_parameter/LIGHT_TEX = ExtResource("8_ndcsl")
-
-[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4ew3"]
-polygon = PackedVector2Array(-47, 48, -47, 79, 47, 79, 47, 48)
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnxgr"]
-resource_local_to_scene = true
-shader = ExtResource("5_ljgus")
-shader_parameter/dy = 1
-shader_parameter/light_distance = null
-shader_parameter/LIGHT_TEX = ExtResource("8_ndcsl")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gmrf"]
-resource_local_to_scene = true
-shader = ExtResource("5_ljgus")
-shader_parameter/dy = 1
-shader_parameter/light_distance = null
-shader_parameter/LIGHT_TEX = ExtResource("8_ndcsl")
-
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5f0n1"]
 resource_local_to_scene = true
 shader = ExtResource("5_3bmc1")
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_g4ew3"]
+polygon = PackedVector2Array(-47, 48, -47, 79, 47, 79, 47, 48)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_lk2j6"]
 resource_local_to_scene = true
@@ -46,6 +25,30 @@ shader = ExtResource("5_3bmc1")
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2j05a"]
 resource_local_to_scene = true
 shader = ExtResource("5_3bmc1")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bfugd"]
+resource_local_to_scene = true
+shader = ExtResource("5_ljgus")
+shader_parameter/dy = 1
+shader_parameter/light_distance = null
+shader_parameter/buffer_px = 16
+shader_parameter/LIGHT_TEX = ExtResource("8_ndcsl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jnxgr"]
+resource_local_to_scene = true
+shader = ExtResource("5_ljgus")
+shader_parameter/dy = 1
+shader_parameter/light_distance = null
+shader_parameter/buffer_px = null
+shader_parameter/LIGHT_TEX = ExtResource("8_ndcsl")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5gmrf"]
+resource_local_to_scene = true
+shader = ExtResource("5_ljgus")
+shader_parameter/dy = 1
+shader_parameter/light_distance = null
+shader_parameter/buffer_px = null
+shader_parameter/LIGHT_TEX = ExtResource("8_ndcsl")
 
 [node name="LBTorchShaderTest" instance=ExtResource("1_xjk8c")]
 script = ExtResource("2_1llu7")
@@ -70,48 +73,10 @@ night_color = Color(0, 0, 0.666667, 1)
 [node name="CanvasModulate" parent="DayNightCycle" index="0"]
 color = Color(0, 0, 0.666667, 1)
 
-[node name="NewShader" type="Node2D" parent="." index="5"]
-
-[node name="SimpleTilesetExt" type="Sprite2D" parent="NewShader" index="0"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_bfugd")
-position = Vector2(705, 424)
-texture = ExtResource("6_8y3r1")
-offset = Vector2(0, -64)
-script = ExtResource("7_1lbbe")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/SimpleTilesetExt" index="0"]
-position = Vector2(0, -64)
-occluder = SubResource("OccluderPolygon2D_g4ew3")
-
-[node name="TestWall" type="Sprite2D" parent="NewShader" index="1"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_jnxgr")
-position = Vector2(458, 350)
-texture = ExtResource("6_8y3r1")
-offset = Vector2(0, -64)
-script = ExtResource("7_1lbbe")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/TestWall" index="0"]
-position = Vector2(0, -64)
-occluder = SubResource("OccluderPolygon2D_g4ew3")
-
-[node name="SimpleTilesetExt4" type="Sprite2D" parent="NewShader" index="2"]
-show_behind_parent = true
-material = SubResource("ShaderMaterial_5gmrf")
-position = Vector2(529, 609)
-texture = ExtResource("6_8y3r1")
-offset = Vector2(0, -64)
-script = ExtResource("7_1lbbe")
-
-[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/SimpleTilesetExt4" index="0"]
-position = Vector2(0, -64)
-occluder = SubResource("OccluderPolygon2D_g4ew3")
-
-[node name="OldShader" type="Node2D" parent="." index="6"]
-visible = false
+[node name="OldShader" type="Node2D" parent="." index="5"]
 
 [node name="SimpleTilesetExt2" type="Sprite2D" parent="OldShader" index="0"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_5f0n1")
 position = Vector2(705, 424)
@@ -126,17 +91,17 @@ occluder = SubResource("OccluderPolygon2D_g4ew3")
 [node name="TestWall2" type="Sprite2D" parent="OldShader" index="1"]
 show_behind_parent = true
 material = SubResource("ShaderMaterial_lk2j6")
-position = Vector2(458, 350)
+position = Vector2(530, 344)
 texture = ExtResource("6_8y3r1")
 offset = Vector2(0, -64)
 script = ExtResource("7_1lbbe")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="OldShader/TestWall2" index="0"]
-visible = false
 position = Vector2(0, -64)
 occluder = SubResource("OccluderPolygon2D_g4ew3")
 
 [node name="SimpleTilesetExt4" type="Sprite2D" parent="OldShader" index="2"]
+visible = false
 show_behind_parent = true
 material = SubResource("ShaderMaterial_2j05a")
 position = Vector2(529, 609)
@@ -145,6 +110,46 @@ offset = Vector2(0, -64)
 script = ExtResource("7_1lbbe")
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="OldShader/SimpleTilesetExt4" index="0"]
+position = Vector2(0, -64)
+occluder = SubResource("OccluderPolygon2D_g4ew3")
+
+[node name="NewShader" type="Node2D" parent="." index="6"]
+
+[node name="SimpleTilesetExt" type="Sprite2D" parent="NewShader" index="0"]
+show_behind_parent = true
+material = SubResource("ShaderMaterial_bfugd")
+position = Vector2(619, 422)
+texture = ExtResource("6_8y3r1")
+offset = Vector2(0, -64)
+script = ExtResource("7_1lbbe")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/SimpleTilesetExt" index="0"]
+position = Vector2(0, -64)
+occluder = SubResource("OccluderPolygon2D_g4ew3")
+
+[node name="TestWall" type="Sprite2D" parent="NewShader" index="1"]
+visible = false
+show_behind_parent = true
+material = SubResource("ShaderMaterial_jnxgr")
+position = Vector2(458, 350)
+texture = ExtResource("6_8y3r1")
+offset = Vector2(0, -64)
+script = ExtResource("7_1lbbe")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/TestWall" index="0"]
+position = Vector2(0, -64)
+occluder = SubResource("OccluderPolygon2D_g4ew3")
+
+[node name="SimpleTilesetExt4" type="Sprite2D" parent="NewShader" index="2"]
+visible = false
+show_behind_parent = true
+material = SubResource("ShaderMaterial_5gmrf")
+position = Vector2(529, 609)
+texture = ExtResource("6_8y3r1")
+offset = Vector2(0, -64)
+script = ExtResource("7_1lbbe")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="NewShader/SimpleTilesetExt4" index="0"]
 position = Vector2(0, -64)
 occluder = SubResource("OccluderPolygon2D_g4ew3")
 

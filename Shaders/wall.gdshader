@@ -6,12 +6,20 @@ global uniform vec4 torch_color : source_color;
 
 uniform int dy;
 uniform int light_distance;
+uniform int buffer_px;
 uniform sampler2D LIGHT_TEX;
 
 void fragment() {
 	int cutoff = 320;
 	if (dy <= 0 || light_distance >= cutoff) {
 		COLOR = texture(TEXTURE, UV) * day_night_color;
+	} else if (dy < buffer_px) {
+		float pct = float(dy) / float(buffer_px);
+		float u = float(light_distance) / float(cutoff) / float(2);
+		float lighting = texture(LIGHT_TEX, vec2(0.5 + u, .5)).r * pct;
+		vec3 tex = texture(TEXTURE, UV).rgb;
+		vec3 tint_color = tex * day_night_color.rgb;
+		COLOR = vec4(tex * lighting + tint_color * (float(1) - lighting), 1);
 	} else {
 		float u = float(light_distance) / float(cutoff) / float(2);
 		float lighting = texture(LIGHT_TEX, vec2(0.5 + u, .5)).r;
