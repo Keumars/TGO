@@ -168,3 +168,7 @@ func reset() -> void:
 	target_var_dropdown.clear()
 	visible_checkbox.button_pressed = false
 	color_margin.hide()
+
+
+func _on_clear_name_pressed()->void:
+	switch_name.text = ""

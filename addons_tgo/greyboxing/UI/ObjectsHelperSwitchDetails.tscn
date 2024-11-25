@@ -21,9 +21,14 @@ text = "Name"
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
 
 [node name="Name" type="LineEdit" parent="NameHBox/Margin"]
 layout_mode = 2
+
+[node name="Clear Name" type="Button" parent="NameHBox"]
+layout_mode = 2
+text = "  Clear  "
 
 [node name="SizeHBox" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -161,5 +166,6 @@ text = "Autorelease Boolean: When this switch is pressed the selected variable w
 When moving off this switch the variable will be set to false."
 autowrap_mode = 3
 
+[connection signal="pressed" from="NameHBox/Clear Name" to="." method="_on_clear_name_pressed"]
 [connection signal="toggled" from="Visual" to="." method="_on_visual_toggled"]
 [connection signal="item_selected" from="TemplateHBox/OptionButton" to="." method="_on_template_selected"]

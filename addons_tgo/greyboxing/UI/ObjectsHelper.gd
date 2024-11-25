@@ -99,6 +99,8 @@ func _ready() -> void:
 		ITEM_KEY: [_item, _item_detail, _reset_item_state],
 		SWITCH_KEY: [_switch, _switch_detail, _switch_detail.reset],
 	}
+	#obj[k][_npc][reset]
+	
 	for k: String in _object_types.keys():
 		_valid_keys.append(k)
 
@@ -147,6 +149,14 @@ func _reset() -> void:
 	_complete_buttons.hide()
 
 
+##After apply implement places object reset place buttons
+##So its not permenantly placing 
+func _reset_PlaceBool() -> void:
+	
+	_place_button.text = BUTTON_TEXT_PLACE
+	_is_object_ready_to_place = false
+
+
 ## Hides object type selection buttons and focuses on the configuration details
 ## for the object type referenced via name.
 func _select_object_type(type_name: String) -> void:
@@ -186,6 +196,8 @@ func _apply_implementation(obj_position: Vector2) -> void:
 			_apply_switch(obj_position)
 		_:
 			assert(false, "Invalid focused object Type: " + _focused_object_type)
+	#_reset_PlaceBool()
+	#Old code:
 	var prev := _focused_object_type
 	_reset()
 	_select_object_type(prev)
@@ -444,3 +456,16 @@ func _item_dropdown_selected(_unused: int) -> void:
 
 func _on_generic_interactable_toggled(toggled_on: bool) -> void:
 	_generic_interacts_desc.visible = toggled_on
+
+
+#A button to clear name field 
+#Switch clear is in Object helper switch details
+func _on_clear_name_pressed(type_name: String)-> void: 
+	match type_name:
+		"generic":
+			_generic_name.text = _generic_name.placeholder_text
+		"push":
+			_pushable_name.text = _generic_name.placeholder_text
+		_:
+			assert(false, "Clear pressed for type_name undefined: " + type_name)
+	
