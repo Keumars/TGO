@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://d4mrsiv1l8m35"]
+[gd_scene load_steps=28 format=3 uid="uid://d4mrsiv1l8m35"]
 
 [ext_resource type="PackedScene" uid="uid://dyq8mcdsutnsa" path="res://Scenes/Components/LevelBase.tscn" id="1_iejup"]
 [ext_resource type="Script" path="res://ZZ_Scratch/GreyboxingTools/BadLevelA.gd" id="2_22a2t"]
@@ -13,8 +13,11 @@
 [ext_resource type="Script" path="res://Scripts/Resources/Effects/DialogueEffect.gd" id="11_03hvs"]
 [ext_resource type="Resource" path="res://ZZ_Scratch/DialogicValidation/test_timeline.dtl" id="12_lpexj"]
 [ext_resource type="PackedScene" uid="uid://rgvfsx60t2ap" path="res://Scenes/Components/Inventory/Item.tscn" id="13_1m8di"]
+[ext_resource type="PackedScene" uid="uid://c2kg6apj756dw" path="res://Scenes/Components/NPC.tscn" id="13_swdtm"]
+[ext_resource type="Script" path="res://Scripts/Components/NPC.gd" id="14_ssc17"]
+[ext_resource type="Resource" uid="uid://0e6y5ablkqx" path="res://Scripts/Resources/NPCs/Buckley.tres" id="15_7103f"]
 [ext_resource type="Resource" uid="uid://b7w2axnxl0fkt" path="res://Scripts/Resources/Items/Key.tres" id="15_svqc7"]
-
+[ext_resource type="Resource" path="res://Dialogue/Buckley/BuckleyTestTimeline.dtl" id="16_ewfoy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ptcao"]
 atlas = ExtResource("3_uhn0b")
@@ -39,6 +42,10 @@ target_state = 1
 [sub_resource type="Resource" id="Resource_lh8xy"]
 script = ExtResource("11_03hvs")
 timeline = ExtResource("12_lpexj")
+
+[sub_resource type="Resource" id="Resource_eypc3"]
+script = ExtResource("11_03hvs")
+timeline = ExtResource("16_ewfoy")
 
 [sub_resource type="Resource" id="Resource_yblux"]
 script = ExtResource("8_m75fk")
@@ -107,6 +114,16 @@ position = Vector2(546, 308)
 dlg = SubResource("Resource_lh8xy")
 id = "mayor_buckley"
 
+[node name="mayor_buckley" type="CharacterBody2D" parent="Objects/Characters" index="1" groups=["NodesWithID"] instance=ExtResource("13_swdtm")]
+position = Vector2(21, 121)
+collision_layer = 5
+motion_mode = 1
+script = ExtResource("14_ssc17")
+config = ExtResource("15_7103f")
+dlg = SubResource("Resource_eypc3")
+id = "mayor_buckley"
+activate_external_sensors = false
+
 [node name="QUEST_KEY" parent="Objects/Items" index="0" instance=ExtResource("13_1m8di")]
 position = Vector2(170.04, 350.165)
 item = ExtResource("15_svqc7")
@@ -131,6 +148,4 @@ effects = Array[Resource("res://Scripts/Resources/Effect.gd")]([SubResource("Res
 [node name="PlayerStart" type="Node2D" parent="Markers" index="0"]
 position = Vector2(522, 183)
 
-
 [editable path="Objects/Characters/MayorBuckley"]
-

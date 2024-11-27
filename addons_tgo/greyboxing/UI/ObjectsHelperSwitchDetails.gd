@@ -7,6 +7,7 @@ const TMPL_NONE = "None"
 const TMPL_TOGGLE_BOOL = "Toggle Boolean"
 const TMPL_INSTANT_BOOL = "Autorelease Boolean"
 const TMPL_SET_VAR = "Set Variable"
+const TMPL_PLAYER_HAS_ITEM = "Player Has Item"
 
 @onready var switch_name: LineEdit = $NameHBox/Margin/Name
 @onready var sensor_size_x: SpinBox = $SizeHBox/Margin/SwitchSizeX
@@ -21,6 +22,7 @@ const TMPL_SET_VAR = "Set Variable"
 @onready var target_var_dropdown: OptionButton = %VariableDropdown
 @onready var toggle_desc := $VariableMargin/VariableVBox/ToggleDesc
 @onready var autorelease_desc := $VariableMargin/VariableVBox/AutoreleaseDesc
+@onready var player_has_item_desc := $VariableMargin/VariableVBox/PlayerHasItemDesc
 
 
 func _on_visual_toggled(is_on: bool) -> void:
@@ -146,7 +148,8 @@ func build() -> Switch:
 			unset_effect.variable_name = _get_variable()
 			unset_effect.new_value = "false"
 			scn.on_released_effects = [unset_effect]
-
+		TMPL_PLAYER_HAS_ITEM:
+			assert(false, "Not implemented")
 		TMPL_SET_VAR:
 			assert(false, "Not implemented")
 
