@@ -137,6 +137,13 @@ func _handle_target_changed() -> void:
 	if target.is_set():
 		if target.is_interactable():
 			hud.set_toast(target.get_interactable().verb_name())
+			var toast := preload("res://Scenes/UI/OptionToast.tscn").instantiate()
+			toast.get_node("%OptionLabel").text = target.get_interactable().verb_name()
+			toast.get_node("TextureRect/VBoxContainer/ExtraOptions").hide()
+			target.get_interactable().add_child(toast)
+			toast.global_position = global_position
+			var width: int = toast.get_node("TextureRect/VBoxContainer").size.x
+			toast.global_position.x = toast.global_position.x - width - 16
 		if target.is_moveable_block():
 			hud.set_toast(Enums.action_verb_name(Enums.ActionVerb.PUSH_PULL))
 	else:
